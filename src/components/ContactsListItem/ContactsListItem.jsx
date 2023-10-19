@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import css from './ContactsListItem.module.css';
 import { useDispatch } from "react-redux";
-import {deleteContact} from 'redux/contacts/operations';
+import {deleteContact} from 'redux/catalog/operations';
 import React, { useState } from 'react';
 import Modal from '../Modal/Modal';
 import EditContactForm from '../ContactForm/EditContactForm';

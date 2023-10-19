@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import css from './ContactForm.module.css';
 import { useDispatch, useSelector} from 'react-redux';
-import { editContact } from "redux/contacts/operations";
-import {selectContactsState} from 'redux/contacts/selectors';
+import { editContact } from "redux/catalog/operations";
+import {selectContactsState} from 'redux/catalog/selectors';
 import toast from 'react-hot-toast';
 import {RotatingLinesSpinner} from '../Spinner/RotatingLinesSpinner';
  
