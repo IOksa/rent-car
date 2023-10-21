@@ -12,13 +12,14 @@ import {
 import storage from 'redux-persist/lib/storage';
 import {advertsReducer} from  './catalog/advertsSlice';
 import {filterReducer} from './catalog/filterSlice';
-
+import {favoriteReducer } from './catalog/favoriteSlice';
 
 
 export const store = configureStore({
   reducer: {
     adverts: advertsReducer,
     filter: filterReducer,
+    favorite: favoriteReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

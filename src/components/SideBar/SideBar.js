@@ -6,8 +6,8 @@ export const SideBar = () => {
  
 
   return (
-    <div className={css.sidebar}>
+    <aside className={css.sidebar}>
       <Navigation />
-    </div>
+    </aside>
   );
 };

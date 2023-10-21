@@ -6,3 +6,11 @@ export const selectError = state => state.adverts.error;
 export const selectIsAdding = state => state.adverts.isAdding;
 
 export const selectFilterState = state => state.filter.value;
+
+export const selectMake = state => state.filter.make;
+export const selectPrice = state => state.filter.price;
+export const selectMileageMin = state => state.filter.mileageMin;
+export const selectMileageMax = state => state.filter.mileageMax;
+
+
+export const selectFavorite = state => state.favorites;

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import Container from 'components/Container/Container';
-import ContactsList from 'components/ContactsList/ContactsList';
+import ContactsList from 'components/AdvertsList/AdvertsList';
 import Filter from 'components/Filter/Filter';
 import { fetchContacts } from 'redux/catalog/operations';
 import { selectIsLoading } from 'redux/catalog/selectors';
