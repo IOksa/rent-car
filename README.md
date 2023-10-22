@@ -1,5 +1,5 @@
 # Rent Car
-[website link] https://ioksa.github.io/rent-car/
+https://ioksa.github.io/rent-car/
 
 Застосунок для компанії, що надає послуги надання в Україні автомобілів в оренду.
 
