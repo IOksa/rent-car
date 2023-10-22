@@ -1,5 +1,5 @@
 import css from './ButtonClose.module.css';
-import sprite from '../../assets/icons/icons.svg';
+import iconClose from '../../assets/icons/iconClose.svg';
 
 export const ButtonClose =({onCloseModal})=>{
 
@@ -7,7 +7,7 @@ export const ButtonClose =({onCloseModal})=>{
         <>
         <button type="button" className={css.buttonClose} onClick={onCloseModal}>
             <svg className={css.buttonCloseIcon}>
-            <use href={`${sprite}#icon-x-close`}></use>
+            <use href={`${iconClose}#icon-x-close`}></use>
             </svg>
         </button>
         </>

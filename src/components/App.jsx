@@ -4,7 +4,7 @@ import { Layout } from './Layout';
 
 const HomePage = lazy(() => import('pages/Home/Home'));
 const CatalogPage = lazy(() => import('pages/Catalog/Catalog'));
-const FavoritesPage = lazy(() => import('pages/Favorites'));
+const FavoritesPage = lazy(() => import('pages/Favorites/Favorites'));
 
 const App=()=>{
 

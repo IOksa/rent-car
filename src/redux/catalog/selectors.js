@@ -15,4 +15,4 @@ export const selectMileageMin = state => state.filter.mileageMin;
 export const selectMileageMax = state => state.filter.mileageMax;
 
 
-export const selectFavorite = state => state.favorites;
+export const selectFavorites = state => state.favorites;

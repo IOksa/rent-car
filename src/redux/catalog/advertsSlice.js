@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import {fetchAdverts, fetchAllAdverts} from './operations';
+import {fetchAdverts, fetchFirstPageAdverts} from './operations';
 
 const handlePending = state => {
   state.isLoading = true;
@@ -15,23 +15,13 @@ const handleRejected = (state, action) => {
 const handleFulfilled = (state, action)=>{
   state.isLoading = false;
   state.error = null;
-  console.log("state.adverts before =",state.adverts.length);
-  if(state.adverts.length>0){
-    state.adverts = [...state.adverts, ...action.payload];
-  }
-  else{  
-    state.adverts = action.payload;
-  }
-  console.log("state.adverts after =",state.adverts);
- 
-
+  state.adverts = [...state.adverts, ...action.payload];
   
 };
-const handleAllFulfilled = (state, action)=>{
+const handleFirstPageAdvertsFulfilled = (state, action)=>{
   state.isLoading = false;
   state.error = null;
-  state.countAllAdverts=action.payload.length;
-  state.adverts=[];
+  state.adverts = action.payload;
 };
 
 
@@ -41,7 +31,7 @@ const advertsSlice = createSlice({
       adverts:[],
       isLoading: false,
       error: null,
-      countAllAdverts: 0,
+     
     },
     
     extraReducers: (builder) => {
@@ -49,9 +39,9 @@ const advertsSlice = createSlice({
             .addCase(fetchAdverts.pending, handlePending)
             .addCase(fetchAdverts.fulfilled, handleFulfilled)
             .addCase(fetchAdverts.rejected, handleRejected)
-            .addCase(fetchAllAdverts.pending, handlePending)
-            .addCase(fetchAllAdverts.fulfilled, handleAllFulfilled)
-            .addCase(fetchAllAdverts.rejected, handleRejected)
+            .addCase(fetchFirstPageAdverts.pending, handlePending)
+            .addCase(fetchFirstPageAdverts.fulfilled, handleFirstPageAdvertsFulfilled)
+            .addCase(fetchFirstPageAdverts.rejected, handleRejected)
 
     },
   

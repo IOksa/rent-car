@@ -1,31 +1,15 @@
 import { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAdverts, fetchAllAdverts } from 'redux/catalog/operations';
-import {selectAdvertsState, selectCountAllAdverts, selectIsLoading, selectError } from 'redux/catalog/selectors';
+import { fetchAdverts, fetchFirstPageAdverts } from 'redux/catalog/operations';
+import {selectAdvertsState, selectIsLoading, selectError } from 'redux/catalog/selectors';
 import {CircleSpinner} from 'components/Spinner/CircleSpinner';
 import AdvertsList from 'components/AdvertsList/AdvertsList';
 import ButtonLoadMore from 'components/ButtonLoadMore/ButtonLoadMore';
-import {queryLimit} from '../../constants/constants';
+import {lengthData,queryLimit} from '../../constants/constants';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// import Filter from 'components/Filter/Filter';
-import css from './Catalog.module.css';
-
-const styles = {
-  container: {
-    minHeight: 'calc(100vh - 50px)',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontWeight: 500,
-    fontSize: 48,
-    textAlign: 'center',
-  },
-};
 
 export default function Catalog() {
 
@@ -34,35 +18,30 @@ export default function Catalog() {
   const isLoading = useSelector(selectIsLoading);
   const [isLoadButton, setIsLoadButton]=useState(true);
   const [countPage, setCountPage]=useState(1);
-  const lengthData=useSelector(selectCountAllAdverts);
   const error=useSelector(selectError);
 
   const maxPage=lengthData/queryLimit;
-  console.log("lengthData=", lengthData);
-  console.log("queryLimit=", queryLimit);
 
   useEffect(() => {
-    console.log("useEffect Catalog");
     if(countPage===1){
-      dispatch(fetchAllAdverts());
+      dispatch(fetchFirstPageAdverts());
     }
-    dispatch(fetchAdverts(countPage));
-    console.log("countPage=", countPage);
-    console.log("maxPage=", maxPage);
-    if(countPage>=maxPage){
-      setIsLoadButton(false);
-      toast.info("We're sorry, but you've reached the end of search results.");
-    }
+
+    
     if(error){
       const errorMessage="Something went wrong. Reload the page and try again. "+error.toString();
       toast.error(errorMessage);
     }
     
-  }, [dispatch, countPage, error, maxPage]);
+  }, [dispatch, countPage, error]);
 
-  const handleOnClickLoadMore =()=>{
-    setCountPage(prevState => (prevState + 1));
-
+  const handleOnClickLoadMore =async ()=>{
+      await dispatch(fetchAdverts(countPage+1));   
+      setCountPage(prevState => (prevState + 1));
+      if(countPage+1>=maxPage){
+        setIsLoadButton(false);
+        toast.info("We're sorry, but you've reached the end of search results.");
+      }
   }
 
   const shouldRenderLoadButton=stateAdverts!==0 && !isLoading && isLoadButton;
@@ -74,7 +53,7 @@ export default function Catalog() {
       </Helmet>
       <ToastContainer autoClose="4000" theme="colored"/>
       {isLoading ? (<CircleSpinner/>)
-      :(<AdvertsList />)
+      :(<AdvertsList cars={stateAdverts}/>)
       }
       {shouldRenderLoadButton && <ButtonLoadMore onClickLoadMore={handleOnClickLoadMore}/>}
       

@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react';
 import Modal from '../Modal/Modal';
 import { ButtonClose } from 'components/ButtonClose/ButtonClose';
 import ModalCarCard from 'components/ModalCarCard/ModalCarCard';
-import { addFavorite, removeFavorite } from 'redux/catalog/favoriteSlice';
-import { selectFavorite } from 'redux/catalog/selectors';
+import { addFavorite, deleteFavorite } from 'redux/catalog/favoriteSlice';
+import { selectFavorites } from 'redux/catalog/selectors';
 import { ReactComponent as IconInFavorite } from '../../assets/icons/iconInFavorite.svg';
 import { ReactComponent as IconNonFavorite } from '../../assets/icons/iconNonFavorite.svg';
 import css from './AdvertsListItem.module.css';
@@ -25,22 +25,32 @@ const AdvertsListItem = ({advert}) => {
       } = advert;
 
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isFavorite, setIsFavorite] = useState(false);
-    // const { favoriteCars } = useSelector(selectFavorite);
+
     const companyAddress = address.split(',');
     const country = companyAddress[2];
     const city = companyAddress[1];
- 
-    // const dispatch = useDispatch();
 
-    // console.log("favoriteCars=", favoriteCars);
+    const [isFavorite, setIsFavorite] = useState(false);
+    const  {favorites}  = useSelector(selectFavorites);
+    const dispatch = useDispatch();
 
-    // useEffect(() => {
-    //     if (favoriteCars.some(favCar => favCar.id === advert.id)) {
-    //       setIsFavorite(true);
-    //     }
-    //   }, [favoriteCars, advert]);
+    useEffect(() => {
 
+        if (favorites.some(favoriteAdvert => favoriteAdvert.id === advert.id)) {
+            setIsFavorite(true);
+        }
+    }, [favorites, advert]);
+
+    const handleFavorite = event => {
+        event.stopPropagation();
+        setIsFavorite(!isFavorite);
+
+        if (favorites.some(favoriteAdvert => favoriteAdvert.id === advert.id)) {
+            dispatch(deleteFavorite(advert));
+        } else {
+            dispatch(addFavorite(advert));
+        }
+    };
 
     const onOpenModal = () => {
         setIsModalOpen(true);
@@ -63,22 +73,13 @@ const AdvertsListItem = ({advert}) => {
         }
     };
 
-    const handleToFavorite = e => {
-        // e.stopPropagation();
-        // setIsFavorite(!isFavorite);
-    
-        // if (favoriteCars.some(favCar => favCar.id === advert.id)) {
-        //   dispatch(removeFavorite(advert));
-        // } else {
-        //   dispatch(addFavorite(advert));
-        // }
-      };
+
 
     return (
         <>
         <div className={css.advertWrap}>
             <div className={css.imageWrap}>
-                <div className={css.iconWrap} onClick={handleToFavorite}>
+                <div className={css.iconWrap} onClick={handleFavorite}>
                 {isFavorite ? (
                     <IconInFavorite width={20} height={20} />
                 ) : (
