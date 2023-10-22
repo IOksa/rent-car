@@ -15,17 +15,23 @@ const handleRejected = (state, action) => {
 const handleFulfilled = (state, action)=>{
   state.isLoading = false;
   state.error = null;
-  state.adverts = action.payload;
+  console.log("state.adverts before =",state.adverts.length);
+  if(state.adverts.length>0){
+    state.adverts = [...state.adverts, ...action.payload];
+  }
+  else{  
+    state.adverts = action.payload;
+  }
+  console.log("state.adverts after =",state.adverts);
+ 
 
   
 };
 const handleAllFulfilled = (state, action)=>{
   state.isLoading = false;
   state.error = null;
-
   state.countAllAdverts=action.payload.length;
-
-  
+  state.adverts=[];
 };
 
 

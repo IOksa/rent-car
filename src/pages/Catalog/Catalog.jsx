@@ -42,6 +42,7 @@ export default function Catalog() {
   console.log("queryLimit=", queryLimit);
 
   useEffect(() => {
+    console.log("useEffect Catalog");
     if(countPage===1){
       dispatch(fetchAllAdverts());
     }
