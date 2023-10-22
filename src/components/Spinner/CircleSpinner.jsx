@@ -6,7 +6,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 160px;
+  padding-top: 260px;
 `;
 
 export const CircleSpinner =()=>{

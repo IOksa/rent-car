@@ -45,8 +45,6 @@ const ModalCarCard = ({currentId, currentAdvert, onCloseModal}) => {
         mileage,
       } = currentAdvert;
 
-
-      console.log("currentAdvert=",currentAdvert);
     const companyAddress = address.split(',');
     const country = companyAddress[2];
     const city = companyAddress[1];

@@ -10,8 +10,8 @@ const persistConfig = {
 const filterInitialState = {
   make: '',
   price: '',
-  mileageMin: '',
-  mileageMax: '',
+  mileageFrom: '',
+  mileageTo: '',
 };
 
 const filterSlice = createSlice({
@@ -21,12 +21,11 @@ const filterSlice = createSlice({
         setAdvertsFilter(state, action) {
         state.make = action.payload.make;
         state.price = action.payload.price;
-        state.mileageMin = action.payload.mileageMin;
-        state.mileageMax = action.payload.mileageMax;
+        state.mileageFrom = action.payload.mileageMin;
+        state.mileageTo = action.payload.mileageMax;
       },
     },
   });
   
 export const {setAdvertsFilter}=filterSlice.actions;
-// export const filterReducer=filterSlice.reducer;
 export const filterReducer = persistReducer(persistConfig, filterSlice.reducer);

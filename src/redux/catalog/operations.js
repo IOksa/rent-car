@@ -17,7 +17,7 @@ export const fetchAdverts = createAsyncThunk(
 );
 
 export const fetchFirstPageAdverts = createAsyncThunk(
-    "adverts/fetchAll",
+    "adverts/fetchFirstRender",
     async (_, thunkAPI) => {
         try {
         const response = await axios.get(`/adverts?page=1&limit=${queryLimit}`);

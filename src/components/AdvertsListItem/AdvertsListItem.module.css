@@ -17,11 +17,8 @@
     position: relative;
     transition: transform 250ms ease-in-out, box-shadow 250ms ease-in-out;
     margin-bottom: 14px;
+    background-color: var(--image-bg-color);
       
-    /* &:hover {
-      transform: scale(1.05);
-      box-shadow: 0 1px 10px black;
-    } */
   
     &::before {
       content: '';
