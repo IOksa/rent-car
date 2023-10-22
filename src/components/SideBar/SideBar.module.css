@@ -1,4 +1,7 @@
+@import '../../styles/variables.css';
+
 .sidebar {
-    width: 240px;
-    background-color: rgb(225, 225, 225);
+    width: 140px;
+    min-height: 890px;
+    background-color: var(--sidebar-bg-color);
   }

@@ -1,5 +1,5 @@
 import css from './ButtonClose.module.css';
-import sprite from '../../assets/images/icons.svg';
+import sprite from '../../assets/icons/icons.svg';
 
 export const ButtonClose =({onCloseModal})=>{
 

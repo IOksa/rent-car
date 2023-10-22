@@ -5,6 +5,8 @@ export const selectError = state => state.adverts.error;
 
 export const selectIsAdding = state => state.adverts.isAdding;
 
+export const selectCountAllAdverts=state=>state.adverts.countAllAdverts;
+
 export const selectFilterState = state => state.filter.value;
 
 export const selectMake = state => state.filter.make;

@@ -8,7 +8,7 @@ export const Layout = () => {
     <main>
       <div style={{display: 'flex', maxWidth: 1440, margin: '0 auto'}}>
         <SideBar />
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 16px' }}>
+        <div style={{ maxWidth: 1300, margin: '0 auto', padding: '0 16px' }}>
             <Suspense fallback={null}>
             <Outlet />
           </Suspense>
